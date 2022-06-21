@@ -76,7 +76,7 @@
                },3000);
 
            } else {
-               this.paymentMessage = 'payment failed!'  
+               this.paymentMessage = 'insufficient amount!'  
            }    
         },
         clearCart() {
@@ -102,7 +102,7 @@
        <div class="f1">
                
        <button x-on:click="showCart=true"><img src="cart.jfif" alt="" width="30">shop</button>
-       <strong x-show="totalQty() > 0" ><span x-text="totalQty()"></span> pizza</strong>
+       <strong x-show="totalQty() > 0" ><span x-text="totalQty()"></span> items</strong>
 
            
            
