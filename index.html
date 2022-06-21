@@ -101,7 +101,7 @@
 
        <div class="f1">
                
-       <button x-on:click="showCart=true"><img src="cart.jfif" alt="" width="30">shop</button>
+       <button x-on:click="showCart=true"><img src="cart.jfif" alt="" width="30">order</button>
        <strong x-show="totalQty() > 0" ><span x-text="totalQty()"></span> items</strong>
 
            
@@ -166,7 +166,7 @@
                                    <div>
                                        <label for="">Payment amount</label>
                                        <input class="input" type="number" placeholder="Payment amount" x-model="paymentAmount">
-                                       <button @click="makePayment" class="btn"> <img src="cart.jfif" alt="" width="20">Pay now</button>
+                                       <button @click="makePayment" class="btn"> <img src="cart.jfif" alt="" width="20">checkout</button>
                                    </div>
                                </div>
                               
