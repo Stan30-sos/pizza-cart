@@ -5,43 +5,230 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pizzastyle.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
     <title>Document</title>
     
 </head>
 <body>
-    <h1>Stanidos Pizza</h1>
-    <div class="container">
-        <div class="pizza">
-<div class="small">
-    <img src="2-topping-24.jpeg" alt="">
-    <h2>Small Pizza</h2>
-    <h2>R58.99</h2>
-    <p>Small pizza with two topings, one meat topping and vegetable topping of your choice </p>
     
-</div>
-<div class="medium">
-    <img src="2-topping-24.jpeg" alt="">
-    <h2>Medium Pizza</h2>
-    <h2>R68.99</h2>
-    <p>medium pizza with two topings, one meat topping and vegetable topping of your choice </p>
-    
-</div>
-<div class="large">
-    <img src="2-topping-24.jpeg" alt="">
-    <h2>Large Pizza</h2>
-    <h2>R78.99</h2>
-    <p>Large pizza with two topings, one meat topping and vegetable topping of your choice </p>
-    
-</div>
+    <div class="container" x-data="{showCart: false,
+        smallTotal:0.00,
+        smallQty:0,
+        mediumTotal:0.00,
+        mediumQty:0,
+        largeTotal:0.00,
+        largeQty:0,
+        payNow: false,
+        paymentAmount: 0,
+        paymentMessage: '',
+        buySmall() {
+           if(this.smallQty > 0){
+           this.smallTotal += 58.99;
+           this.smallQty += 1
+           }
+        },
+        clearSmall() {
+           if(this.smallQty > 0){
+           this.smallTotal -= 58.99;
+           this.smallQty -= 1
+           }
+        },
+        buyMedium(){
+           if(this.mediumQty > 0){
+           this.mediumTotal += 68.99;
+           this.mediumQty += 1
+           }
+        },
+        clearMedium(){
+           if(this.mediumQty > 0){
+           this.mediumTotal -= 78.99;
+           this.mediumQty -= 1
+        }
+       },
+       buyLarge(){
+           if(this.largeQty > 0){
+           this.largeTotal += 78.99;
+           this.largeQty += 1
+           }
+        },
+        clearLarge(){
+           if(this.largeQty > 0){
+           this.largeTotal -= 78.99;
+           this.largeQty -= 1
+        }
+       },
+        cartTotal() {
+           return this.smallTotal + this.mediumTotal + this.largeTotal;
+        },
+        totalQty() {
+           return this.smallQty + this.mediumQty + this.largeQty;
+        },
+        makePayment(){
+           if(!this.paymentAmount){
+               this.paymentMessage = 'No amount entered!'
+           }  
+           if(this.paymentAmount >= this.cartTotal() ) {
+               this.paymentMessage = 'Payment successful!'
+
+               setTimeout(() => {
+                   this.payNow = false;
+                   this.clearCart()
+               },3000);
+
+           } else {
+               this.paymentMessage = 'payment failed!'  
+           }    
+        },
+        clearCart() {
+       this.smallTotal=0.00;
+       this.smallQty=0.00;
+       this.mediumTotal=0.00;
+       this.mediumQty=0.00;
+       this.largeTotal=0.00;
+       this.largeQty=0.00;
+        }
+
+        }">
+
+       <div class="header">
+        <div class="names">
+            <h1> Stanidos pizza</h1>
+         <img src="stanidos pizza.gif" alt="" width="150">
+        </div>   
+               <div class="f3">
+              
+       </div>
+
+       <div class="f1">
+               
+       <button x-on:click="showCart=true"><img src="cart.jfif" alt="" width="30">shop</button>
+       <strong x-show="totalQty() > 0" ><span x-text="totalQty()"></span> pizza</strong>
+
+           
+           
+       </div>
+       </div>
+
+       <div class="cart-box" x-show="showCart">
+               <div class="cart">
+                   <div>
+                       <button x-on:click="showCart=false">
+                    <img src="cart.jfif" alt="" width="30">close cart</button>
+                   </div>
+                   <div class="">
+                   </div>
+                   <table>
+                       <tr x-show="smallQty > 0">
+                           <td>Small Pizza</td>
+                           <td>
+                               <span x-text="smallQty"></span>
+                               <button @click="buySmall" x-show="smallQty > 0">+</button>
+                               <button @click="clearSmall" x-show="smallQty > 0">-</button>
+                           </td>
+                           <td>
+                               R<span  x-text="smallTotal.toFixed(2)"></span>
+                           </td>
+                           
+                       </tr>
+                       <tr x-show="mediumQty > 0">
+                           <td>Medium pizza</td>
+                           <td>
+                               <span x-text="mediumQty"></span>
+                               <button @click="buyMedium" x-show="mediumQty > 0">+</button>
+                               <button @click="clearMedium " x-show="mediumQty > 0">-</button>
+                           </td>
+                           <td >
+                               R<span x-text="mediumTotal.toFixed(2)"></span>
+                           </td>
+                       </tr>
+                       <tr x-show="largeQty >0">
+                           <td>Large pizza</td>
+                           <td>
+                               <span x-text="largeQty"></span>
+                               <button  @click="buyLarge" x-show="largeQty > 0">+</button>
+                               <button  @click="clearLarge" x-show="largeQty >0">-</button>
+                           </td>
+                           <td>
+                               R<span x-text="largeTotal.toFixed(2)"></span>
+                           </td>
+                       </tr>
+                       <tr x-show="cartTotal() > 0">
+                           <td colspan="2">Total</td>
+                           <td>
+                               R<span  x-text="cartTotal().toFixed(2)"></span>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+
+                               <div x-show="payNow">
+                                   <div class="message" x-text="paymentMessage"></div>
+                                   <div>
+                                       <label for="">Payment amount</label>
+                                       <input class="input" type="number" placeholder="Payment amount" x-model="paymentAmount">
+                                       <button @click="makePayment" class="btn"> <img src="cart.jfif" alt="" width="20">Pay now</button>
+                                   </div>
+                               </div>
+                              
+                           </td>
+                           <td>
+                    <button x-show="!payNow" @click="payNow=true" class="btn"> <img src="cart.jfif" alt="" width="20">pay</button>
+                           </td>
+                       </tr>
+                   </table>
+               </div>
+       </div>
+       <div class="pizza">
+        <div class="small">
+            <img src="2-topping-24.jpeg" alt="" width="300" height="200">
+            <h3>Small pizza</h3>
+                <h4>R58.99</h4>
+                <button class="buy btn" @click="smallTotal += 58.99; smallQty +=1 ">
+                    <img src="2-topping-24.jpeg" alt="" width="20">
+                Buy</button>
+                <div>
+                    Small pizza with two topings, one meat topping and vegetable topping of your choice
+        
+                </div>
+
         </div>
+
+
+        <div class="medium">
+            <img src="2-topping-24.jpeg" alt="" width="300" height="200">
+            <h3>Medium pizza</h3>
+            <h4>R68.99</h4>
+            <button class="buy btn" @click="mediumTotal += 68.99; mediumQty +=1 ">
+                <img src="2-topping-24.jpeg" alt="" width="20">
+            Buy</button>
+            <div>
+                Medium pizza with two topings, one meat topping and vegetable topping of your choice
+     
+            </div>
+        </div>
+        <div class="large">
+            <img src="2-topping-24.jpeg" alt="" width="300" height="200" >
+            <h3>Large pizza</h3>
+                <h4>R78.99</h4>
+                <button class="buy btn" @click="largeTotal += 78.99; largeQty +=1 ">
+                    <img src="2-topping-24.jpeg"  alt="" width="20">
+                Buy</button>
+            <div>
+                Large pizza with two topings, one meat topping and vegetable topping of your choice
+        
+            </div>
+        </div>
+
     </div>
-    <div class="footer">
-        <h2>Contact Details</h2>
-        <p>email:order@stnpiza.com</p>
-        <p>phone: 012 700 3964</p>
-        <h2>Address</h2>
-        <p>1385 Block X ext</p>
-        <p>Mabopane</p>
-    </div>
+
+</div>
+            <div class="footer">
+                <h2>Contact Details</h2>
+                <p>email:order@stnpiza.com</p>
+                <p>phone: 012 700 3964</p>
+                <h2>Address</h2>
+                <p>1385 Block X ext</p>
+                <p>Mabopane</p>
+            </div>
 </body>
 </html>
