@@ -49,51 +49,13 @@ img{
     border: solid white 1em;
 }
 
-h1 {
-
-    /* padding: 1em; */
-    /* border-radius: 0.25em; */
-}
-
-h2 {
-    /* background-color: lightcoral; */
-    /* padding: 1em; */
-}
-
-span {
-    /*border: 1px solid;*/
-    /*background-color: lightgreen;*/
-    /*padding: 1em;*/
-    /*margin: 1em;*/
-}
-
-.input {
-    margin: 1em;
-}
-
-.link {
-    background-color: lightcoral;
-    width: 15em;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 0.5em;
-    /* text-align: center; */
-}
-
-.link:hover {
-    background-color: crimson;
-}
-
-
 .cart-box {
     display: flex;
     justify-content: flex-end;
 
 }
 
-.cart-link {
-    link: none;
-}
+
 
 .hidden {
     display: none;
@@ -101,7 +63,6 @@ span {
 
 .cart {
     background-color: wheat;
-    /* margin: 0.5em; */
     padding: 1em;
     width: 100%;
     margin-top: -10em;
@@ -116,7 +77,7 @@ table {
 td {
     text-align: center;
     vertical-align: bottom;
-    /* height: 50px; */
+    
 }
 
 th,
@@ -138,7 +99,6 @@ td {
 
 .message {
     padding: 1em;
-    /* color: grey; */
     font-weight: bold;
     background-color: dodgerblue;
 }
@@ -160,33 +120,26 @@ td {
 
 .buy {
     width: 7em;
-    margin-bottom: 1em;
-    
-    /* padding: 1em 0em 1em 0em;
-    border-radius: 0.25em;
-    background-color: gold;
-    color: grey;
-    font-weight: bold;
-    border: 0;
-    cursor: pointer; */
+    margin-bottom: 1em;   
+}
+.buy:hover{
+    background-color: chartreuse;
 }
 .cart {
-        /* background-color: dodgerblue; */
-        /* padding: 1em; */
+        
         width: 50%;
-        /* margin-top: -10em; */
-        /* border-radius-bottom: 1em; */
+        
     }
 
     box {
-    /* background-color:lightseagreen; */
+   
     border: 1em solid silver;
     width: 10%;
     padding: 2em 1em 2em 0em;
 }
 
 .box1 {
-    /* background-color:lightseagreen; */
+   
     border: 1px solid lightblue;
     width: 10px;
     padding: 2em 1em 2em 0em;
