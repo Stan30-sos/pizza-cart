@@ -77,7 +77,9 @@
 
            } else {
                this.paymentMessage = 'insufficient amount!'  
+               
            }    
+           
         },
         clearCart() {
        this.smallTotal=0.00;
@@ -172,7 +174,7 @@
                               
                            </td>
                            <td>
-                    <button x-show="!payNow" @click="payNow=true" class="btn"> <img src="cart.jfif" alt="" width="20">pay</button>
+                    <button x-show="cartTotal() > 0" @click="payNow=true" class="btn"> <img src="cart.jfif" alt="" width="20">pay</button>
                            </td>
                        </tr>
                    </table>
